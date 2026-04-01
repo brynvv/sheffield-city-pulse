@@ -26,14 +26,16 @@ record = {
 
 df = pd.DataFrame([record])
 
-output_dir = Path("data")
-output_dir.mkdir(exist_ok=True)
+# Create partition based on date
+date_str = datetime.utcnow().strftime("%Y-%m-%d")
 
-file_path = output_dir / "air_quality.csv"
+output_dir = Path(f"data/raw/air_quality/date={date_str}")
+output_dir.mkdir(parents=True, exist_ok=True)
 
-if file_path.exists():
-    df.to_csv(file_path, mode="a", header=False, index=False)
-else:
-    df.to_csv(file_path, index=False)
+file_name = f"{datetime.utcnow().strftime('%H-%M-%S')}.parquet"
 
-print("Air quality data saved:", record)
+file_path = output_dir / file_name
+
+df.to_parquet(file_path, index=False)
+
+print("Saved air quality data to:", file_path)
