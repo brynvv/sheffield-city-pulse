@@ -14,7 +14,8 @@ API_URL = (
     "&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
 )
 
-logger.add("logs/weather_pipeline.log", rotation="10 MB")
+
+logger.add("logs/pipelines/weather_pipeline.log", rotation="10 MB")
 
 
 def fetch_weather():

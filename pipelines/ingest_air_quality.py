@@ -10,7 +10,7 @@ API_TOKEN = "50aed127932c7def831bf1329b5eb4204f6a7e02"
 API_URL = f"https://api.waqi.info/feed/sheffield/?token={API_TOKEN}"
 
 #Configure logging
-logger.add("logs/pipeline.log", rotation="10 MB")
+logger.add("logs/pipelines/air_quality_pipeline.log", rotation="10 MB")
 
 def fetch_air_quality():
 
