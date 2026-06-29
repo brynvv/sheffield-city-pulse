@@ -40,5 +40,8 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./pipelines:/opt/airflow/pipelines
+      - ./analytics:/opt/airflow/analytics
+      - ./data:/opt/airflow/data
       - ./logs:/opt/airflow/logs
     command: airflow scheduler
