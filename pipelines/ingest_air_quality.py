@@ -39,12 +39,13 @@ def fetch_air_quality():
 
 
 def save_to_parquet(record):
-
+    
     df = pd.DataFrame([record])
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     output_dir = Path(f"data/raw/air_quality/date={date_str}")
+
     output_dir.mkdir(parents=True, exist_ok=True)
 
     file_name = f"{datetime.now(timezone.utc).strftime('%H-%M-%S')}.parquet"

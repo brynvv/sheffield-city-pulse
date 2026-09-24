@@ -2,3 +2,4 @@ requests
 pandas
 pyarrow
 loguru
+duckdb==0.10.3

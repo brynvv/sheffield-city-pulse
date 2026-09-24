@@ -11,7 +11,7 @@ services:
       - "5432:5432"
 
   airflow-init:
-    image: apache/airflow:2.8.1
+    build: .
     depends_on:
       - postgres
     environment:
@@ -32,7 +32,7 @@ services:
       "
 
   airflow-scheduler:
-    image: apache/airflow:2.8.1
+    build: .
     depends_on:
       - postgres
       - airflow-init
