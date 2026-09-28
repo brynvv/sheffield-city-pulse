@@ -36,7 +36,7 @@ def save_to_parquet(record):
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    output_dir = Path(f"data/raw/weather/date={date_str}")
+    output_dir = Path("/opt/airflow/data/raw/weather") / f"date={date_str}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     file_name = f"{datetime.now(timezone.utc).strftime('%H-%M-%S')}.parquet"

@@ -8,7 +8,7 @@ default_args = {
 
 with DAG(
     dag_id="city_pulse_pipeline",
-    schedule_interval="@hourly",
+    schedule_interval="*/15 * * * *",
     catchup=False,
     default_args=default_args,
 ) as dag:

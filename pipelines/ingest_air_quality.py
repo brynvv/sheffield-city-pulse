@@ -44,7 +44,7 @@ def save_to_parquet(record):
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    output_dir = Path(f"data/raw/air_quality/date={date_str}")
+    output_dir = Path("/opt/airflow/data/raw/air_quality") / f"date={date_str}"
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
