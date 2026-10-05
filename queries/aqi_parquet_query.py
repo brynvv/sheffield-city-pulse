@@ -2,7 +2,7 @@ import duckdb
 
 result = duckdb.sql("""
 SELECT *
-FROM 'data/raw/air_quality/*/*.parquet'
+FROM 'data/processed/*.parquet'
 """)
 
 print(result.df())
