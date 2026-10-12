@@ -4,9 +4,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from loguru import logger
 import time
+import os
 
-API_TOKEN = "50aed127932c7def831bf1329b5eb4204f6a7e02"
+API_TOKEN = os.getenv("WAQI_API_TOKEN")
 
+if not API_TOKEN:
+    raise RuntimeError(
+        "WAQI_API_TOKEN is not set. Check your environment configuration."
+        )
+                       
 API_URL = f"https://api.waqi.info/feed/sheffield/?token={API_TOKEN}"
 
 #Configure logging
@@ -44,7 +50,9 @@ def save_to_parquet(record):
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    output_dir = Path("/opt/airflow/data/raw/air_quality") / f"date={date_str}"
+    data_dir = Path(os.getenv("DATA_DIR", "data"))
+
+    output_dir = data_dir / "raw" / "air_quality" / f"date={date_str}"
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

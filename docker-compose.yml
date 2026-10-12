@@ -33,11 +33,14 @@ services:
 
   airflow-scheduler:
     build: .
+    env_file:
+      - .env
     depends_on:
       - postgres
       - airflow-init
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      DATA_DIR: /opt/airflow/data
     volumes:
       - ./dags:/opt/airflow/dags
       - ./pipelines:/opt/airflow/pipelines

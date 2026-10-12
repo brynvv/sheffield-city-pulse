@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime, timezone
 from pathlib import Path
 from loguru import logger
+import os
 
 # Sheffield coordinates
 LAT = 53.3811
@@ -36,7 +37,9 @@ def save_to_parquet(record):
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    output_dir = Path("/opt/airflow/data/raw/weather") / f"date={date_str}"
+    data_dir = Path(os.getenv("DATA_DIR", "data"))
+
+    output_dir = data_dir / "raw" / "weather" / f"date={date_str}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     file_name = f"{datetime.now(timezone.utc).strftime('%H-%M-%S')}.parquet"
