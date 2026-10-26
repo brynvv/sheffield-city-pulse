@@ -4,3 +4,5 @@ pyarrow
 loguru
 duckdb==0.10.3
 streamlit
+azure-identity
+azure-storage-file-datalake
